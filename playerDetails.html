@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Player Details</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://kit.fontawesome.com/6f5013579e.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <div id="head-con4">
+                <div id="head-right">
+                    <img src="https://cdn.storyasset.link/rDoQLC7Q6Ge2nxiqZ1urXiiRSIA3/tata-ipl-logo-indya-talks-sanket-savaliya-removebg-preview-ms-qeladdzjmt.png" alt="logo here" id="logo"/>
+                    <a href="index.html"><button id="home-button" class="add-button">Home</button></a>
+                </div>
+            </div>
+        </header>
+        <h1 id="slogan4">players details</h1>
+        <div id="player-details-wrapper">
+            <div id="player-details-con" class="player-detail"></div>
+        </div>
+        <footer>
+            <div><h4>2023 Indian Premiere League</h4></div>
+        </footer>
+        <script>
+        let urlData = location.href;
+        let newUrl = new URL(urlData);
+        let playerUrl = newUrl.searchParams.get("name");
+        console.log(playerUrl);
+        
+        teamsDetails = JSON.parse(localStorage.getItem("teamArray"));
+        playersDetails = JSON.parse(localStorage.getItem("playerArray"));
+        
+        let playerData = document.getElementById("player-details-con");
+        for (var i = 0; i < playersDetails.length; i++) {
+            if (playersDetails[i].playerName == playerUrl) {
+                var playingOrN = "";
+                if (playersDetails[i].isPlaying == true) {
+                    playingOrN = "Playing";
+                } else {
+                    playingOrN = "On Bench";
+                } playerData.innerHTML += `<div id="player_detail-img"><img src="${playersDetails[i].playerImg}" alt="">
+                    </div>
+                    <div id="new-player-det">
+                        <table>
+                            <tr>
+                                <td>Player Name  </td>
+                                <td>${playersDetails[i].playerName}  </td>
+                            </tr>
+                            <table>
+                            <tr>
+                                <td> Team Name </td>
+                                <td> ${playersDetails[i].playerTeam}  </td>
+                                </tr>
+                                <table>
+                                    <tr>
+                                    <td> Team Code </td>
+                                    <td>${playersDetails[i].from}   </td>
+                                    </tr>
+                                    <table>
+                                    <tr>
+                                        <td> Worth </td>
+                                        <td>${playersDetails[i].price}  </td>
+                                    </tr>
+                                    <table>
+                                    <tr>
+                                        <td> Is playing </td>
+                                        <td> ${playingOrN} </td>
+                                    </tr>
+                        </table>
+                    </div>`;
+                }}
+        </script>
+    </body>
+</html>
